@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.jafa.repository.ApprovalRepository">
+	
+	<insert id="write">
+		insert into approval_school(ano,no,kind,state,content,progress) values(approval_seq.nextval,#{no},#{kind},#{state},#{content},#{progress})
+	</insert>
+	
+	<select id="getList" resultType="approvalVO">
+		select  * from 	approval_school where kind ='join' and state ='교감승인'
+	</select>
+	<delete id="del" >
+		delete from approval_school where ano = #{ano}
+	</delete>
+	
+	<update id="denyUpdate">
+    	update approval_school 
+    	set
+    		state = #{state}
+    	where ano = #{ano} 
+	</update>
+
+</mapper>
